@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 
-import Home from "./scenes/home";
+import Home from "./scenes/Home";
 
 const App: FC = () => <Home />;
 

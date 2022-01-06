@@ -1,0 +1,6 @@
+# files to ignore with prettier
+# all files edited by people should use prettier
+# NOTE: to ignore a specific line with prettier, use "#prettier-ignore"
+node_modules
+.expo
+.vscode

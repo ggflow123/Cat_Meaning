@@ -1,15 +1,17 @@
 import React, { FC } from "react";
 import { Text, View, StyleSheet } from "react-native";
-import colors from "../../constants/colors";
+import { colors } from "@constants";
 
 type props = {};
 
 const style = StyleSheet.create({
   text: {
     color: colors.black,
-    width: 50,
+    width: 100,
     height: 50,
     backgroundColor: colors.grey,
+    borderRadius: 10,
+    fontSize: 20,
   },
 });
 

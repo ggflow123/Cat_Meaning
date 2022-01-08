@@ -1,13 +1,18 @@
 import React, { FC } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import colors from "../constants/colors";
+import { colors } from "@constants";
 
 type props = {};
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.header,
-    height: 40,
+    height: 60,
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    borderBottomWidth: 5,
+    borderBottomColor: colors.blue,
   },
 });
 

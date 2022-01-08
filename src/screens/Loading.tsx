@@ -1,14 +1,13 @@
 import React, { FC } from "react";
 import { Text, View, StyleSheet } from "react-native";
-import MainLayout from "../components/layouts/MainLayout";
-
-type props = {};
+import { MainLayout } from "@components/layouts";
+import { ScreenType } from "@types";
 
 const style = StyleSheet.create({});
 
-const LoadingScreen: FC<props> = ({}) => {
+const LoadingScreen: ScreenType<"Loading"> = ({}) => {
   return (
-    <MainLayout title={"Hello"}>
+    <MainLayout title={"Loading..."}>
       <Text>...Loading...</Text>
     </MainLayout>
   );

@@ -1,19 +1,18 @@
 import React, { FC } from "react";
 import { SafeAreaView, View } from "react-native";
-import TitleBar from "../TitleBar";
-import NavBar from "../NavBar";
+import { TitleBar, NavBar } from "@components";
 
-type props = {
+type layoutprops = {
   title?: string;
-  navButtons?: JSX.Element;
+  navButtons?: Array<JSX.Element>;
 };
 
-const MainLayout: FC<props> = ({ title, navButtons, children }) => {
+const MainLayout: FC<layoutprops> = ({ title, navButtons, children }) => {
   return (
     <SafeAreaView>
-      <TitleBar title={"Hello"} />
+      <TitleBar title={title} />
       <View>{children}</View>
-      <NavBar />
+      <NavBar>{navButtons}</NavBar>
     </SafeAreaView>
   );
 };

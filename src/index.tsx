@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 
-import Home from "./scenes/Home";
+import { Navigation } from "@config";
 
-const App: FC = () => <Home />;
+const App: FC = () => <Navigation />;
 
 export default App;

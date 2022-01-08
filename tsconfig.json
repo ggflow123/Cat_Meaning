@@ -2,15 +2,26 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "strict": true,
-    // // PATH ALIASES DON'T WORK AUGH!!!
-    // "baseUrl": "src",
-    // "paths": {
-    //   "_components/*": ["components/*"],
-    //   "_navigations/*": ["navigations/*"],
-    //   "_screens/*": ["screens/*"],
-    //   "_styles/*": ["styles/*"],
-    //   "_utils/*": ["utils/*"],
-    //   "_assets/*": ["assets/*"]
-    // }
+    "baseUrl": "src",
+    "paths": {
+      "@assets": ["assets"],
+      "@assets/*": ["assets/*"],
+      "@components": ["components"],
+      "@components/*": ["components/*"],
+      "@config": ["config"],
+      "@config/*": ["config/*"],
+      "@constants": ["constants"],
+      "@constants/*": ["constants/*"],
+      "@data": ["data"],
+      "@data/*": ["data/*"],
+      "@screens": ["screens"],
+      "@screens/*": ["screens/*"],
+      "@types": ["types"],
+      "@types/*": ["types/*"],
+      "@utils": ["utils"],
+      "@utils/*": ["utils/*"],
+      "@src": ["."],
+      "@src/*": ["./*"],
+    }
   },
 }

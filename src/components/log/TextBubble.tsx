@@ -4,7 +4,7 @@ import { colors } from "@constants";
 
 type props = {};
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   text: {
     color: colors.black,
     width: 100,
@@ -16,7 +16,7 @@ const style = StyleSheet.create({
 });
 
 const TextBubble: FC<props> = ({ children }) => {
-  return <Text style={style.text}>{children}</Text>;
+  return <Text style={styles.text}>{children}</Text>;
 };
 
 export default TextBubble;

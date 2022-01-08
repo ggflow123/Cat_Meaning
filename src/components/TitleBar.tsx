@@ -16,6 +16,8 @@ const styles = StyleSheet.create({
     color: colors.white,
     fontSize: 30,
     textAlign: "center",
+    borderBottomColor: colors.white,
+    borderBottomWidth: 2,
   },
 });
 

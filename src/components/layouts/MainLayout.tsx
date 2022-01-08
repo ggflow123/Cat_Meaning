@@ -1,17 +1,28 @@
 import React, { FC } from "react";
-import { SafeAreaView, View } from "react-native";
+import { SafeAreaView, View, StyleSheet, Platform } from "react-native";
 import { TitleBar, NavBar } from "@components";
+import { colors } from "@constants";
 
 type layoutprops = {
   title?: string;
   navButtons?: Array<JSX.Element>;
 };
 
+const fullHeight = Platform.OS === "web" ? "100vh" : "100%";
+
+const styles = StyleSheet.create({
+  mainView: {
+    height: fullHeight,
+    backgroundColor: colors.black,
+  },
+  innerView: { backgroundColor: colors.background, flex: 1 },
+});
+
 const MainLayout: FC<layoutprops> = ({ title, navButtons, children }) => {
   return (
-    <SafeAreaView>
+    <SafeAreaView style={styles.mainView}>
       <TitleBar title={title} />
-      <View>{children}</View>
+      <View style={styles.innerView}>{children}</View>
       <NavBar>{navButtons}</NavBar>
     </SafeAreaView>
   );

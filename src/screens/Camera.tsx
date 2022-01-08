@@ -12,7 +12,6 @@ import { NavIcon } from "@components";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -29,12 +28,6 @@ const CameraScreen: ScreenType<"Camera"> = ({ navigation }) => {
         <Text>It works!</Text>
         <Button title="Press me!" />
         <CameraObject />
-        <View>
-          <Text>Go Back by clicking the below button :)</Text>
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <AntDesign name="doubleleft" size={24} color="black" />
-          </TouchableOpacity>
-        </View>
       </View>
     </MainLayout>
   );

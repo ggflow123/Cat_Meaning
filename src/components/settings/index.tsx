@@ -1,2 +1,2 @@
-// export { default as Setting } from "./Setting";
-// export { default as SettingButton } from "./SettingButton";
+export { default as SettingRow } from "./SettingRow";
+export { default as SettingButton } from "./SettingButton";

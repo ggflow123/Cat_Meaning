@@ -43,9 +43,9 @@ const CameraObject: FC = () => {
   }
   const __switchCamera = () => {
     if (cameraType === 'back') {
-      setCameraType('front')
+      setCameraType(Camera.Constants.Type.front)
     } else {
-      setCameraType('back')
+      setCameraType(Camera.Constants.Type.front)
     }
   }
   return (
@@ -89,7 +89,7 @@ const CameraObject: FC = () => {
                     onPress={__handleFlashMode}
                     style={{
                       backgroundColor: flashMode === 'off' ? '#000' : '#fff',
-                      borderRadius: '50%',
+                      borderRadius: 4,
                       height: 25,
                       width: 25
                     }}
@@ -106,7 +106,7 @@ const CameraObject: FC = () => {
                     onPress={__switchCamera}
                     style={{
                       marginTop: 20,
-                      borderRadius: '50%',
+                      borderRadius: 4,
                       height: 25,
                       width: 25
                     }}

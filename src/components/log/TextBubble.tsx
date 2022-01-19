@@ -2,21 +2,44 @@ import React, { FC } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { colors } from "@constants";
 
-type props = {};
+type props = {
+  origin?: "left" | "right" | "none";
+};
 
 const styles = StyleSheet.create({
+  container: {
+    alignItems: "flex-start",
+  },
   text: {
     color: colors.black,
-    width: 100,
-    height: 50,
     backgroundColor: colors.grey,
     borderRadius: 10,
-    fontSize: 20,
+    fontSize: 16,
+    padding: 7,
+    margin: 5,
+  },
+  left: {
+    borderBottomLeftRadius: 0,
+  },
+  right: {
+    borderBottomRightRadius: 0,
   },
 });
 
-const TextBubble: FC<props> = ({ children }) => {
-  return <Text style={styles.text}>{children}</Text>;
+const TextBubble: FC<props> = ({ origin = "none", children }) => {
+  return (
+    <View style={styles.container}>
+      <Text
+        style={[
+          styles.text,
+          origin === "left" && styles.left,
+          origin === "right" && styles.right,
+        ]}
+      >
+        {children}
+      </Text>
+    </View>
+  );
 };
 
 export default TextBubble;

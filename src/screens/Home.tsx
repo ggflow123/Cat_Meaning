@@ -10,6 +10,8 @@ import * as WebBrowser from "expo-web-browser";
 import { ScreenType } from "@types";
 import { NavIcon } from "@components";
 import { colors } from "@constants";
+import { TextBubble } from "@components/log";
+import { NavigationHelpersContext } from "@react-navigation/native";
 
 const styles = StyleSheet.create({
   container: {
@@ -89,9 +91,11 @@ const LoadingScreen: ScreenType<"Home"> = ({ navigation }) => {
           <Text style={styles.disclaimerText}>*Official name TBD</Text>
         </View>
         <View style={styles.logContainer}>
-          <Text>LOG GOES HERE</Text>
-          <Text>Log entry</Text>
-          <Text>Another entry</Text>
+          <TouchableOpacity onPress={() => navigation.push("Log")}>
+            <TextBubble origin="left">Meow</TextBubble>
+            <TextBubble origin="left">Can I haz cheeseburger?</TextBubble>
+            <TextBubble origin="left">I'm sleepy</TextBubble>
+          </TouchableOpacity>
         </View>
       </View>
     </MainLayout>

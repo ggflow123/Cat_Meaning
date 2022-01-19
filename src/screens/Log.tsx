@@ -5,12 +5,13 @@ import { StyleSheet, Text, View, SafeAreaView } from "react-native";
 import { MainLayout } from "@components/layouts";
 import { ScreenType } from "@types";
 import { NavIcon } from "@components";
+import { TextBubble } from "@components/log";
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: "flex-start",
+    justifyContent: "flex-end",
   },
 });
 
@@ -24,9 +25,9 @@ const LogScreen: ScreenType<"Log"> = ({ navigation }) => {
   return (
     <MainLayout navButtons={navButtons} title="Log">
       <View style={styles.container}>
-        <Text>Some sort of text</Text>
-        <Text>Some more text</Text>
-        <Text>Even more text</Text>
+        <TextBubble origin="left">Some Text</TextBubble>
+        <TextBubble origin="left">Some More Text</TextBubble>
+        <TextBubble origin="left">This Page Yet to be Flushed Out</TextBubble>
       </View>
     </MainLayout>
   );

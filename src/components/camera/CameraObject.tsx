@@ -10,7 +10,7 @@ const CameraObject: FC = () => {
   const [cameraType, setCameraType] = React.useState(Camera.Constants.Type.back)
   const [flashMode, setFlashMode] = React.useState('off')
 
-  const __startCamera = async () => {
+  const startCameraFunction = async () => {
     const {status} = await Camera.requestPermissionsAsync()
     console.log(status)
     if (status === 'granted') {
@@ -19,20 +19,20 @@ const CameraObject: FC = () => {
       Alert.alert('Access denied')
     }
   }
-  const __takePicture = async () => {
+  const takePictureFunction = async () => {
     const photo: any = await camera.takePictureAsync()
     console.log(photo)
     setPreviewVisible(true)
     //setStartCamera(false)
     setCapturedImage(photo)
   }
-  const __savePhoto = () => {}
-  const __retakePicture = () => {
+  const savePhotoFunction = () => {}
+  const retakePictureFunction = () => {
     setCapturedImage(null)
     setPreviewVisible(false)
-    __startCamera()
+    startCameraFunction()
   }
-  const __handleFlashMode = () => {
+  const handleFlashModeFunction = () => {
     if (flashMode === 'on') {
       setFlashMode('off')
     } else if (flashMode === 'off') {
@@ -41,11 +41,11 @@ const CameraObject: FC = () => {
       setFlashMode('auto')
     }
   }
-  const __switchCamera = () => {
+  const switchCameraFunction = () => {
     if (cameraType === 'back') {
       setCameraType(Camera.Constants.Type.front)
     } else {
-      setCameraType(Camera.Constants.Type.front)
+      setCameraType(Camera.Constants.Type.back)
     }
   }
   return (
@@ -58,14 +58,14 @@ const CameraObject: FC = () => {
           }}
         >
           {previewVisible && capturedImage ? (
-            <CameraPreview photo={capturedImage} savePhoto={__savePhoto} retakePicture={__retakePicture} />
+            <CameraPreview photo={capturedImage} savePhoto={savePhotoFunction} retakePicture={retakePictureFunction} />
           ) : (
             <Camera
               type={cameraType}
-              flashMode={flashMode}
+              flashMode={'auto'}
               style={{flex: 1}}
-              ref={(r) => {
-                camera = r
+              ref={ref => {
+                camera = ref
               }}
             >
               <View
@@ -86,7 +86,7 @@ const CameraObject: FC = () => {
                   }}
                 >
                   <TouchableOpacity
-                    onPress={__handleFlashMode}
+                    onPress={handleFlashModeFunction}
                     style={{
                       backgroundColor: flashMode === 'off' ? '#000' : '#fff',
                       borderRadius: 4,
@@ -103,7 +103,7 @@ const CameraObject: FC = () => {
                     </Text>
                   </TouchableOpacity>
                   <TouchableOpacity
-                    onPress={__switchCamera}
+                    onPress={switchCameraFunction}
                     style={{
                       marginTop: 20,
                       borderRadius: 4,
@@ -139,7 +139,7 @@ const CameraObject: FC = () => {
                     }}
                   >
                     <TouchableOpacity
-                      onPress={__takePicture}
+                      onPress={takePictureFunction}
                       style={{
                         width: 70,
                         height: 70,
@@ -164,7 +164,7 @@ const CameraObject: FC = () => {
           }}
         >
           <TouchableOpacity
-            onPress={__startCamera}
+            onPress={startCameraFunction}
             style={{
               width: 130,
               borderRadius: 4,

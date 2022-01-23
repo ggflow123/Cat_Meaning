@@ -2,12 +2,11 @@
 
 import React from "react";
 import { StyleSheet, Text, View, SafeAreaView } from "react-native";
-import { Button, CameraObject } from "@components";
-import { MainLayout } from "@components/layouts";
-import { ScreenType } from "@types";
-import { AntDesign } from "@expo/vector-icons";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import { NavIcon } from "@components";
+import { Button, CameraObject } from "@components";
+
+import { ScreenType } from "@types";
+import { MainLayout } from "@components/layouts";
 
 const styles = StyleSheet.create({
   container: {
@@ -17,7 +16,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const CameraScreen: ScreenType<"Camera"> = ({ navigation }) => {
+const LoginScreen: ScreenType<"Login"> = ({ navigation }) => {
   const navButtons = [
     <NavIcon
       key="0"
@@ -27,13 +26,12 @@ const CameraScreen: ScreenType<"Camera"> = ({ navigation }) => {
   ];
 
   return (
-    <MainLayout navButtons={navButtons} title="Camera">
+    <MainLayout navButtons={navButtons} title="Microphone">
       <View style={styles.container}>
-        <Text>It works!</Text>
-        <Button title="Press me!" />
-        <CameraObject />
+        <Text>This is the login page</Text>
       </View>
     </MainLayout>
   );
 };
-export default CameraScreen;
+
+export default LoginScreen;

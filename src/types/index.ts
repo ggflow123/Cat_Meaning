@@ -13,6 +13,7 @@ export type RootStackParamList = {
   Log: undefined;
   Microphone: undefined;
   Settings: undefined;
+  Login: undefined;
 };
 
 export type ScreenType<

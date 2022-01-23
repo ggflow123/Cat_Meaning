@@ -18,7 +18,11 @@ const styles = StyleSheet.create({
 
 const MicrophoneScreen: ScreenType<"Microphone"> = ({ navigation }) => {
   const navButtons = [
-    <NavIcon iconName="triangle-left" onPress={() => navigation.pop()} />,
+    <NavIcon
+      key="0"
+      iconName="triangle-left"
+      onPress={() => navigation.pop()}
+    />,
   ];
 
   return (

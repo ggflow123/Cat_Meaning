@@ -17,9 +17,21 @@ const styles = StyleSheet.create({
 
 const LogScreen: ScreenType<"Log"> = ({ navigation }) => {
   const navButtons = [
-    <NavIcon iconName="triangle-left" onPress={() => navigation.pop()} />,
-    <NavIcon iconName="camera" onPress={() => navigation.push("Camera")} />,
-    <NavIcon iconName="mic" onPress={() => navigation.push("Microphone")} />,
+    <NavIcon
+      key="0"
+      iconName="triangle-left"
+      onPress={() => navigation.pop()}
+    />,
+    <NavIcon
+      key="1"
+      iconName="camera"
+      onPress={() => navigation.push("Camera")}
+    />,
+    <NavIcon
+      key="2"
+      iconName="mic"
+      onPress={() => navigation.push("Microphone")}
+    />,
   ];
 
   return (

@@ -1,6 +1,6 @@
 // TODO
 
-import React, { FC } from "react";
+import React, { useEffect } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { MainLayout } from "@components/layouts";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -12,6 +12,8 @@ import { NavIcon } from "@components";
 import { colors } from "@constants";
 import { TextBubble } from "@components/log";
 import { NavigationHelpersContext } from "@react-navigation/native";
+
+import { getUser } from "@src/util";
 
 const styles = StyleSheet.create({
   container: {
@@ -59,10 +61,30 @@ const styles = StyleSheet.create({
 
 const LoadingScreen: ScreenType<"Home"> = ({ navigation }) => {
   const navButtons = [
-    <NavIcon iconName="cog" onPress={() => navigation.push("Settings")} />,
-    <NavIcon iconName="camera" onPress={() => navigation.push("Camera")} />,
-    <NavIcon iconName="mic" onPress={() => navigation.push("Microphone")} />,
+    <NavIcon
+      key="1"
+      iconName="cog"
+      onPress={() => navigation.push("Settings")}
+    />,
+    <NavIcon
+      key="2"
+      iconName="camera"
+      onPress={() => navigation.push("Camera")}
+    />,
+    <NavIcon
+      key="3"
+      iconName="mic"
+      onPress={() => navigation.push("Microphone")}
+    />,
   ];
+
+  const userNamePromise = getUser("uuid2");
+
+  useEffect(() => {
+    userNamePromise.then((name) => {
+      console.log("user name is " + name);
+    });
+  }, []);
 
   return (
     <MainLayout navButtons={navButtons} title="The Catalatorator*">

@@ -24,9 +24,21 @@ const styles = StyleSheet.create({
 
 const SettingsScreen: ScreenType<"Settings"> = ({ navigation }) => {
   const navButtons = [
-    <NavIcon iconName="triangle-left" onPress={() => navigation.pop()} />,
-    <NavIcon iconName="camera" onPress={() => navigation.push("Camera")} />,
-    <NavIcon iconName="mic" onPress={() => navigation.push("Camera")} />,
+    <NavIcon
+      key="0"
+      iconName="triangle-left"
+      onPress={() => navigation.pop()}
+    />,
+    <NavIcon
+      key="1"
+      iconName="camera"
+      onPress={() => navigation.push("Camera")}
+    />,
+    <NavIcon
+      key="2"
+      iconName="mic"
+      onPress={() => navigation.push("Camera")}
+    />,
   ];
 
   return (
@@ -41,92 +53,92 @@ const SettingsScreen: ScreenType<"Settings"> = ({ navigation }) => {
           />
           <SettingDivider />
           <SettingRow
-            name="Sound"
-            description="Should the app use sound?"
+            name="Sample"
+            description="Sample setting"
             defaultValue={true}
             onChange={(newValue) => null}
           />
           <SettingDivider />
           <SettingRow
-            name="Sound"
-            description="Should the app use sound?"
+            name="Sample"
+            description="Sample setting?"
             defaultValue={true}
             onChange={(newValue) => null}
-          />{" "}
+          />
           <SettingDivider />
           <SettingRow
-            name="Sound"
-            description="Should the app use sound?"
+            name="Sample"
+            description="Sample setting?"
             defaultValue={true}
             onChange={(newValue) => null}
-          />{" "}
+          />
           <SettingDivider />
           <SettingRow
-            name="Sound"
-            description="Should the app use sound?"
+            name="Sample"
+            description="Sample setting?"
             defaultValue={true}
             onChange={(newValue) => null}
-          />{" "}
+          />
           <SettingDivider />
           <SettingRow
-            name="Sound"
-            description="Should the app use sound?"
+            name="Sample"
+            description="Sample setting?"
             defaultValue={true}
             onChange={(newValue) => null}
-          />{" "}
+          />
           <SettingDivider />
           <SettingRow
-            name="Sound"
-            description="Should the app use sound?"
+            name="Sample"
+            description="Sample setting?"
             defaultValue={true}
             onChange={(newValue) => null}
-          />{" "}
+          />
           <SettingDivider />
           <SettingRow
-            name="Sound"
-            description="Should the app use sound?"
+            name="Sample"
+            description="Sample setting?"
             defaultValue={true}
             onChange={(newValue) => null}
-          />{" "}
+          />
           <SettingDivider />
           <SettingRow
-            name="Sound"
-            description="Should the app use sound?"
+            name="Sample"
+            description="Sample setting?"
             defaultValue={true}
             onChange={(newValue) => null}
-          />{" "}
+          />
           <SettingDivider />
           <SettingRow
-            name="Sound"
-            description="Should the app use sound?"
+            name="Sample"
+            description="Sample setting?"
             defaultValue={true}
             onChange={(newValue) => null}
-          />{" "}
+          />
           <SettingDivider />
           <SettingRow
-            name="Sound"
-            description="Should the app use sound?"
+            name="Sample"
+            description="Sample setting?"
             defaultValue={true}
             onChange={(newValue) => null}
-          />{" "}
+          />
           <SettingDivider />
           <SettingRow
-            name="Sound"
-            description="Should the app use sound?"
+            name="Sample"
+            description="Sample setting?"
             defaultValue={true}
             onChange={(newValue) => null}
-          />{" "}
+          />
           <SettingDivider />
           <SettingRow
-            name="Sound"
-            description="Should the app use sound?"
+            name="Sample"
+            description="Sample setting?"
             defaultValue={true}
             onChange={(newValue) => null}
-          />{" "}
+          />
           <SettingDivider />
           <SettingRow
-            name="Sound"
-            description="Should the app use sound?"
+            name="Sample"
+            description="Sample setting?"
             defaultValue={true}
             onChange={(newValue) => null}
           />

@@ -18,8 +18,8 @@
       "@screens/*": ["screens/*"],
       "@types": ["types"],
       "@types/*": ["types/*"],
-      "@utils": ["utils"],
-      "@utils/*": ["utils/*"],
+      "@util": ["util"],
+      "@util/*": ["util/*"],
       "@src": ["."],
       "@src/*": ["./*"],
     }

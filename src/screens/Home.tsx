@@ -13,7 +13,7 @@ import { colors } from "@constants";
 import { TextBubble } from "@components/log";
 import { NavigationHelpersContext } from "@react-navigation/native";
 
-import { getUser } from "@src/util";
+import { getUser } from "@util";
 
 const styles = StyleSheet.create({
   container: {
@@ -78,7 +78,7 @@ const LoadingScreen: ScreenType<"Home"> = ({ navigation }) => {
     />,
   ];
 
-  const userNamePromise = getUser("uuid2");
+  const userNamePromise = getUser("fakeuuid");
 
   useEffect(() => {
     userNamePromise.then((name) => {

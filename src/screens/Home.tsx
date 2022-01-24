@@ -1,6 +1,6 @@
 // TODO
 
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { MainLayout } from "@components/layouts";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -8,12 +8,12 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import * as WebBrowser from "expo-web-browser";
 
 import { ScreenType } from "@types";
-import { NavIcon } from "@components";
+import { NavIcon, SignInButton } from "@components";
 import { colors } from "@constants";
 import { TextBubble } from "@components/log";
-import { NavigationHelpersContext } from "@react-navigation/native";
 
 import { getUser } from "@util";
+import { AuthContext } from "@config/AuthContext";
 
 const styles = StyleSheet.create({
   container: {
@@ -23,14 +23,30 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     padding: 50,
   },
+  logContainer: {
+    position: "absolute",
+    left: 10,
+    top: 10,
+  },
+  logoContainer: {
+    position: "absolute",
+    right: 120,
+    top: 50,
+    opacity: 0.5,
+  },
   disclaimerContainer: {
     position: "absolute",
-    right: 10,
+    left: 10,
     bottom: 10,
   },
   disclaimerText: {
     color: colors.black,
     fontSize: 14,
+  },
+  signinContainer: {
+    position: "absolute",
+    right: 10,
+    bottom: 10,
   },
   centralImageContainer: {
     position: "absolute",
@@ -46,20 +62,12 @@ const styles = StyleSheet.create({
     height: 200,
     borderRadius: 100,
   },
-  logoContainer: {
-    position: "absolute",
-    right: 120,
-    top: 50,
-    opacity: 0.5,
-  },
-  logContainer: {
-    position: "absolute",
-    left: 10,
-    top: 10,
-  },
 });
 
-const LoadingScreen: ScreenType<"Home"> = ({ navigation }) => {
+const HomeScreen: ScreenType<"Home"> = ({ navigation }) => {
+  const auth = useContext(AuthContext);
+  const signedIn = auth.userData !== null;
+
   const navButtons = [
     <NavIcon
       key="1"
@@ -78,18 +86,29 @@ const LoadingScreen: ScreenType<"Home"> = ({ navigation }) => {
     />,
   ];
 
-  const userNamePromise = getUser("fakeuuid");
+  // const userNamePromise = getUser("fakeuuid");
 
-  useEffect(() => {
-    userNamePromise.then((name) => {
-      console.log("user name is " + name);
-    });
-  }, []);
+  // useEffect(() => {
+  //   userNamePromise.then((name) => {
+  //     console.log("user name is " + name);
+  //   });
+  // }, []);
+
+  const sampleLogs = [
+    {
+      text: "Meow",
+    },
+    {
+      text: "Can I haz cheezeburger?",
+    },
+    {
+      text: "I'm sleepy",
+    },
+  ];
 
   return (
     <MainLayout navButtons={navButtons} title="The Catalatorator*">
       <View style={styles.container}>
-        <TouchableOpacity style={styles.logoContainer}></TouchableOpacity>
         <View style={styles.centralImageContainer}>
           <Image
             style={styles.centralImage}
@@ -98,6 +117,16 @@ const LoadingScreen: ScreenType<"Home"> = ({ navigation }) => {
             }}
           />
         </View>
+        <View style={styles.logContainer}>
+          <TouchableOpacity onPress={() => navigation.push("Log")}>
+            {sampleLogs.map((log, i) => (
+              <TextBubble origin="left" key={i}>
+                {log.text}
+              </TextBubble>
+            ))}
+          </TouchableOpacity>
+        </View>
+        <TouchableOpacity style={styles.logoContainer}></TouchableOpacity>
         <View style={styles.logoContainer}>
           <TouchableOpacity
             onPress={() => {
@@ -112,15 +141,20 @@ const LoadingScreen: ScreenType<"Home"> = ({ navigation }) => {
         <View style={styles.disclaimerContainer}>
           <Text style={styles.disclaimerText}>*Official name TBD</Text>
         </View>
-        <View style={styles.logContainer}>
-          <TouchableOpacity onPress={() => navigation.push("Log")}>
-            <TextBubble origin="left">Meow</TextBubble>
-            <TextBubble origin="left">Can I haz cheeseburger?</TextBubble>
-            <TextBubble origin="left">I'm sleepy</TextBubble>
-          </TouchableOpacity>
+        <View style={styles.signinContainer}>
+          <SignInButton
+            onPress={() => {
+              if (signedIn) {
+                auth.signOut();
+              } else {
+                navigation.push("Login");
+              }
+            }}
+            signedIn={signedIn}
+          />
         </View>
       </View>
     </MainLayout>
   );
 };
-export default LoadingScreen;
+export default HomeScreen;

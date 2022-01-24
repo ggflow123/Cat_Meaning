@@ -14,6 +14,7 @@ export type RootStackParamList = {
   Microphone: undefined;
   Settings: undefined;
   Login: undefined;
+  AccountCreation: undefined;
 };
 
 export type ScreenType<

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import {
@@ -8,7 +8,9 @@ import {
   CameraScreen,
   MicrophoneScreen,
   LoadingScreen,
+  LoginScreen,
 } from "@screens";
+import { AuthProvider } from "./AuthContext";
 
 import { RootStackParamList } from "@types";
 
@@ -33,6 +35,11 @@ const MainStackScreen = () => (
     <MainStack.Screen
       name="Log"
       component={LogScreen}
+      options={{ headerShown: false }}
+    />
+    <MainStack.Screen
+      name="Login"
+      component={LoginScreen}
       options={{ headerShown: false }}
     />
     <MainStack.Screen
@@ -70,9 +77,11 @@ const MainStackScreen = () => (
 
 const Navigation: FC = () => {
   return (
-    <NavigationContainer>
-      <MainStackScreen />
-    </NavigationContainer>
+    <AuthProvider>
+      <NavigationContainer>
+        <MainStackScreen />
+      </NavigationContainer>
+    </AuthProvider>
   );
 };
 

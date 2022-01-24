@@ -3,25 +3,24 @@
 import React from "react";
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
 
-type props = { title: string };
+type props = { title: string; onPress: () => void };
 
 const styles = StyleSheet.create({
   container: {
-    borderWidth: 10,
+    borderWidth: 4,
     borderRadius: 20,
     borderColor: "red",
-    backgroundColor: "orange",
-    color: "white",
+    backgroundColor: "yellow",
     padding: 4,
     margin: 20,
   },
 });
 
-const Button: React.FC<props> = ({ title }) => {
+const SubmitButton: React.FC<props> = ({ title, onPress }) => {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <Text>{title}</Text>
     </TouchableOpacity>
   );
 };
-export default Button;
+export default SubmitButton;

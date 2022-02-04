@@ -1,12 +1,10 @@
 // TODO
 
 import React from "react";
-import { StyleSheet, Text, View, SafeAreaView } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { Button, CameraObject } from "@components";
 import { MainLayout } from "@components/layouts";
 import { ScreenType } from "@types";
-import { AntDesign } from "@expo/vector-icons";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import { NavIcon } from "@components";
 
 const styles = StyleSheet.create({

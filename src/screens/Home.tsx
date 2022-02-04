@@ -11,7 +11,6 @@ import { ScreenType } from "@types";
 import { NavIcon } from "@components";
 import { colors } from "@constants";
 import { TextBubble } from "@components/log";
-import { NavigationHelpersContext } from "@react-navigation/native";
 
 import { getUser } from "@src/util";
 
@@ -48,7 +47,7 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     position: "absolute",
-    right: 120,
+    right: 50,
     top: 50,
     opacity: 0.5,
   },

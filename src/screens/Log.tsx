@@ -1,7 +1,7 @@
 // TODO
 
 import React, { FC } from "react";
-import { StyleSheet, Text, View, SafeAreaView } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { MainLayout } from "@components/layouts";
 import { ScreenType } from "@types";
 import { NavIcon } from "@components";

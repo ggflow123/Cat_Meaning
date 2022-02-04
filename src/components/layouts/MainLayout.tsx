@@ -1,5 +1,6 @@
 import React, { FC } from "react";
-import { SafeAreaView, View, StyleSheet, Platform } from "react-native";
+import { View, StyleSheet, Platform } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { TitleBar, NavBar } from "@components";
 import { colors } from "@constants";
 

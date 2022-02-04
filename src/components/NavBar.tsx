@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { colors } from "@constants";
+import { StatusBar } from "expo-status-bar";
 
 type props = {};
 
@@ -17,7 +18,12 @@ const styles = StyleSheet.create({
 });
 
 const NavBar: FC<props> = ({ children }) => {
-  return <View style={styles.container}>{children}</View>;
+  return (
+    <>
+      <View style={styles.container}>{children}</View>
+      {/* <StatusBar style="darks" /> */}
+    </>
+  );
 };
 
 export default NavBar;

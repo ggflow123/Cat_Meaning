@@ -1,13 +1,12 @@
 // TODO
 
-import React, { useState, useEffect, useContext } from "react";
-import { StyleSheet, Text, View, TextInput } from "react-native";
-import { SubmitButton, NavIcon } from "@components";
-
-import { ScreenType } from "@types";
+import { NavIcon, SubmitButton } from "@components";
 import { MainLayout } from "@components/layouts";
-import { colors } from "@constants";
 import { AuthContext } from "@config/AuthContext";
+import { colors } from "@constants";
+import { ScreenType } from "@types";
+import React, { useContext, useState } from "react";
+import { StyleSheet, Text, TextInput, View } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
@@ -15,7 +14,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  passwordField: {
+  textField: {
     padding: 2,
     backgroundColor: colors.white,
     borderColor: colors.black,
@@ -24,17 +23,18 @@ const styles = StyleSheet.create({
 });
 
 const LoginScreen: ScreenType<"Login"> = ({ navigation }) => {
-  const [badSubmit, setBadSubmit] = useState<boolean>(false);
+  const [isBadSubmit, setIsBadSubmit] = useState<boolean>(false);
   const [password, setPassword] = useState<string>("");
+  const [username, setUsername] = useState<string>("");
 
   const auth = useContext(AuthContext);
 
   const signIn = async () => {
-    const successful = await auth.signIn(password);
+    const successful = await auth.signIn(username, password);
     if (successful) {
       navigation.push("Home");
     } else {
-      setBadSubmit(true);
+      setIsBadSubmit(true);
     }
   };
 
@@ -49,13 +49,21 @@ const LoginScreen: ScreenType<"Login"> = ({ navigation }) => {
   return (
     <MainLayout navButtons={navButtons} title="Log In">
       <View style={styles.container}>
-        <Text>This is a sample login page</Text>
+        <Text>Login</Text>
+        <Text>Enter your username:</Text>
+        <TextInput
+          editable
+          textContentType="username"
+          style={styles.textField}
+          onChangeText={(text) => setUsername(text)}
+          onSubmitEditing={signIn}
+        />
         <Text>Enter your password:</Text>
         <TextInput
           secureTextEntry
           editable
           textContentType="password"
-          style={styles.passwordField}
+          style={styles.textField}
           onChangeText={(text) => setPassword(text)}
           onSubmitEditing={signIn}
         />

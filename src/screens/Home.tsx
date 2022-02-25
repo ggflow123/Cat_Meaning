@@ -1,19 +1,16 @@
 // TODO
 
-import React, { useEffect, useContext } from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { CreateAccountButton, NavIcon, SignInButton } from "@components";
 import { MainLayout } from "@components/layouts";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import { FontAwesome5 } from "@expo/vector-icons";
-import * as WebBrowser from "expo-web-browser";
-
-import { ScreenType } from "@types";
-import { NavIcon, SignInButton } from "@components";
-import { colors } from "@constants";
 import { TextBubble } from "@components/log";
-
-import { getUser } from "@util";
 import { AuthContext } from "@config/AuthContext";
+import { colors } from "@constants";
+import { FontAwesome5 } from "@expo/vector-icons";
+import { ScreenType } from "@types";
+import * as WebBrowser from "expo-web-browser";
+import React, { useContext } from "react";
+import { Image, StyleSheet, Text, View } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const styles = StyleSheet.create({
   container: {
@@ -86,14 +83,6 @@ const HomeScreen: ScreenType<"Home"> = ({ navigation }) => {
     />,
   ];
 
-  // const userNamePromise = getUser("fakeuuid");
-
-  // useEffect(() => {
-  //   userNamePromise.then((name) => {
-  //     console.log("user name is " + name);
-  //   });
-  // }, []);
-
   const sampleLogs = [
     {
       text: "Meow",
@@ -142,6 +131,11 @@ const HomeScreen: ScreenType<"Home"> = ({ navigation }) => {
           <Text style={styles.disclaimerText}>*Official name TBD</Text>
         </View>
         <View style={styles.signinContainer}>
+          {!auth.userData && (
+            <CreateAccountButton
+              onPress={() => navigation.push("AccountCreation")}
+            />
+          )}
           <SignInButton
             onPress={() => {
               if (signedIn) {

@@ -1,18 +1,18 @@
-import React, { FC, useContext } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import {
-  HomeScreen,
-  SettingsScreen,
-  LogScreen,
+  AccountCreationScreen,
   CameraScreen,
-  MicrophoneScreen,
+  HomeScreen,
   LoadingScreen,
   LoginScreen,
+  LogScreen,
+  MicrophoneScreen,
+  SettingsScreen,
 } from "@screens";
-import { AuthProvider } from "./AuthContext";
-
 import { RootStackParamList } from "@types";
+import React, { FC } from "react";
+import { AuthProvider } from "./AuthContext";
 
 const MainStack = createStackNavigator<RootStackParamList>();
 const MainStackScreen = () => (
@@ -40,6 +40,11 @@ const MainStackScreen = () => (
     <MainStack.Screen
       name="Login"
       component={LoginScreen}
+      options={{ headerShown: false }}
+    />
+    <MainStack.Screen
+      name="AccountCreation"
+      component={AccountCreationScreen}
       options={{ headerShown: false }}
     />
     <MainStack.Screen

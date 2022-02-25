@@ -1,12 +1,10 @@
 // TODO
 
-import React from "react";
-import { StyleSheet, Text, View, SafeAreaView } from "react-native";
 import { NavIcon } from "@components";
-import { Button, CameraObject } from "@components";
-
-import { ScreenType } from "@types";
 import { MainLayout } from "@components/layouts";
+import { ScreenType } from "@types";
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 
 const styles = StyleSheet.create({
   container: {

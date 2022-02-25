@@ -1,5 +1,4 @@
-import React, { FC, createContext, useState } from "react";
-// import {AuthData, authService} from '../services/authService';
+import React, { createContext, FC, useState } from "react";
 
 type UserData = {
   name: string;
@@ -8,7 +7,7 @@ type UserData = {
 type AuthContextData = {
   userData: UserData | null;
   loading: boolean;
-  signIn: (password: string) => Promise<boolean>;
+  signIn: (username: string, password: string) => Promise<boolean>;
   signOut: () => void;
 };
 
@@ -32,7 +31,10 @@ export const AuthProvider: FC = ({ children }) => {
   // signs the user in
   // returns true iff the sign in was successful.
   // for testing, use the password ""
-  const signIn = async (password: string) => {
+  const signIn = async (
+    username: string,
+    password: string
+  ): Promise<boolean> => {
     setLoading(true);
     // sleep to simulate reaching server
     await sleep(500);

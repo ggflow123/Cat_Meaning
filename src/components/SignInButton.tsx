@@ -1,6 +1,6 @@
 import { colors } from "@constants";
 import React, { FC } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 type props = {
@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
   },
   text: {
     color: colors.white,
+    textAlign: "center",
   },
 });
 

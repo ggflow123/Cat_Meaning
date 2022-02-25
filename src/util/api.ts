@@ -1,17 +1,85 @@
-export const getUser = async (uuid: string): Promise<string | void> => {
+export const sendDebug = async (): Promise<boolean> => {
   try {
     const response = await fetch(
-      "https://caster-app-heroku.herokuapp.com/getUser?uuid=" +
-        encodeURIComponent(uuid)
+      "https://caster-app-heroku.herokuapp.com/user/debug"
     );
-    const json = await response.json();
-    return json.firstName;
+    console.log({ response });
+    return true;
   } catch (error) {
     console.error(error);
-  } finally {
-    // pass
+    return false;
   }
 };
+
+export const createAccount = async (
+  firstName: string,
+  lastName: string,
+  username: string,
+  password: string
+): Promise<boolean> => {
+  try {
+    // to be implemented later
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
+
+// NOT YET IMPLEMENTED
+// type userReturnData = {
+//   uuid: string,
+//   username: string,
+//   firstName: string,
+//   lastName: string,
+// };
+// export const getUser = async (username: string, encryptedPassword: string): Promise<userReturnData | null> {
+//   try {
+//     const response = await fetch("https://")
+//   }
+// }
+
+// export const getUserName = async (uuid: string): Promise<string | void> => {
+//   try {
+//     const response = await fetch(
+//       "https://caster-app-heroku.herokuapp.com/getUser?uuid=" +
+//         encodeURIComponent(uuid)
+//     );
+//     const json = await response.json();
+//     return json.firstName;
+//   } catch (error) {
+//     console.error(error);
+//   } finally {
+//   }
+// };
+
+// type UserData = {
+//   firstName?: string,
+//   lastName?: string,
+//   username: string,
+//   encryptedPassword: string,
+// }
+
+// export const createUser = async (data: UserData): Promise<boolean?> => {
+//   try {
+//     const defaultData = {
+//       uuid: Math.floor(Math.random() * 10000),
+//       firstName: "firstnameplaceholder",
+//       lastName: "lastnameplaceholder",
+//       username: "usernameplaceholder",
+//       encryptedPassword: "passwordplaceholder",
+//     }
+
+//     const response = await fetch(
+//       "https://caster-app-heroku.herokuapp.com/createUser",
+//       {
+//         body: {
+//           JSON.stringify({...defaultData, ...data})
+//         }
+//       }
+//     )
+//   }
+// }
 
 // // returns a prmose whose value is whether or not the sign in was successful
 // export const signIn (username: string, password: string): Promise<boolean> => {

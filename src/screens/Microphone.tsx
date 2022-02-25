@@ -1,11 +1,10 @@
 // TODO
 
+import { NavIcon } from "@components";
+import { MainLayout } from "@components/layouts";
+import { ScreenType } from "@types";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { NavIcon } from "@components";
-
-import { ScreenType } from "@types";
-import { MainLayout } from "@components/layouts";
 
 const styles = StyleSheet.create({
   container: {

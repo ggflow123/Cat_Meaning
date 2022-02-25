@@ -1,11 +1,11 @@
 // TODO
 
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { Button, CameraObject } from "@components";
+import { NavIcon } from "@components";
+import { CameraObject } from "@components/camera";
 import { MainLayout } from "@components/layouts";
 import { ScreenType } from "@types";
-import { NavIcon } from "@components";
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
@@ -28,7 +28,7 @@ const CameraScreen: ScreenType<"Camera"> = ({ navigation }) => {
     <MainLayout navButtons={navButtons} title="Camera">
       <View style={styles.container}>
         <Text>It works!</Text>
-        <Button title="Press me!" />
+        {/* <Button title="Press me!" /> */}
         <CameraObject />
       </View>
     </MainLayout>

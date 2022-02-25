@@ -1,12 +1,12 @@
 // TODO
 
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { MainLayout } from "@components/layouts";
-import { ScreenType } from "@types";
 import { NavIcon } from "@components";
+import { MainLayout } from "@components/layouts";
 import { SettingRow } from "@components/settings";
 import SettingDivider from "@components/settings/SettingDivider";
+import { ScreenType } from "@types";
+import React from "react";
+import { StyleSheet, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 
 const styles = StyleSheet.create({

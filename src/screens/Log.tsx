@@ -1,11 +1,11 @@
 // TODO
 
-import React, { FC } from "react";
-import { StyleSheet, View } from "react-native";
-import { MainLayout } from "@components/layouts";
-import { ScreenType } from "@types";
 import { NavIcon } from "@components";
+import { MainLayout } from "@components/layouts";
 import { TextBubble } from "@components/log";
+import { ScreenType } from "@types";
+import React from "react";
+import { StyleSheet, View } from "react-native";
 
 const styles = StyleSheet.create({
   container: {

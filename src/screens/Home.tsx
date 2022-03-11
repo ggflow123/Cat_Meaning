@@ -1,6 +1,11 @@
 // TODO
 
-import { CreateAccountButton, NavIcon, SignInButton } from "@components";
+import {
+  CreateAccountButton,
+  ModifyAccountButton,
+  NavIcon,
+  SignInButton,
+} from "@components";
 import { MainLayout } from "@components/layouts";
 import { TextBubble } from "@components/log";
 import { AuthContext } from "@config/AuthContext";
@@ -27,23 +32,23 @@ const styles = StyleSheet.create({
   },
   logoContainer: {
     position: "absolute",
-    right: 120,
-    top: 50,
+    right: 20,
+    top: 20,
     opacity: 0.5,
   },
-  disclaimerContainer: {
+  nameContainer: {
     position: "absolute",
     left: 10,
     bottom: 10,
   },
-  disclaimerText: {
+  nameText: {
     color: colors.black,
     fontSize: 14,
   },
   signinContainer: {
     position: "absolute",
     right: 10,
-    bottom: 10,
+    bottom: 5,
   },
   centralImageContainer: {
     position: "absolute",
@@ -127,10 +132,19 @@ const HomeScreen: ScreenType<"Home"> = ({ navigation }) => {
             <FontAwesome5 name="cat" size={60} color="black" />
           </TouchableOpacity>
         </View>
-        <View style={styles.disclaimerContainer}>
-          <Text style={styles.disclaimerText}>*Official name TBD</Text>
+        <View style={styles.nameContainer}>
+          {auth.userData && (
+            <Text style={styles.nameText}>
+              Your username: {auth.userData.username}.
+            </Text>
+          )}
         </View>
         <View style={styles.signinContainer}>
+          {auth.userData && (
+            <ModifyAccountButton
+              onPress={() => navigation.push("AccountModification")}
+            />
+          )}
           {!auth.userData && (
             <CreateAccountButton
               onPress={() => navigation.push("AccountCreation")}

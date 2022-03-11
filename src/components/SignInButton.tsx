@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
   container: {
     padding: 10,
     borderRadius: 16,
+    margin: 5,
   },
   signedInContainer: {
     backgroundColor: colors.red,

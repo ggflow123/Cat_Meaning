@@ -1,7 +1,7 @@
 // deprecated, do not use!
 
 import React from "react";
-import { TouchableOpacity, Text, StyleSheet } from "react-native";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
 type props = { title: string; onPress: () => void };
 
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     borderColor: "red",
     backgroundColor: "yellow",
     padding: 4,
-    margin: 20,
+    margin: 10,
   },
 });
 

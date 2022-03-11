@@ -2,12 +2,14 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import {
   AccountCreationScreen,
+  AccountModificationScreen,
   CameraScreen,
   HomeScreen,
   LoadingScreen,
   LoginScreen,
   LogScreen,
   MicrophoneScreen,
+  PictureReviewScreen,
   SettingsScreen,
 } from "@screens";
 import { RootStackParamList } from "@types";
@@ -48,6 +50,11 @@ const MainStackScreen = () => (
       options={{ headerShown: false }}
     />
     <MainStack.Screen
+      name="AccountModification"
+      component={AccountModificationScreen}
+      options={{ headerShown: false }}
+    />
+    <MainStack.Screen
       name="Microphone"
       component={MicrophoneScreen}
       options={{ headerShown: false }}
@@ -55,6 +62,11 @@ const MainStackScreen = () => (
     <MainStack.Screen
       name="Settings"
       component={SettingsScreen}
+      options={{ headerShown: false }}
+    />
+    <MainStack.Screen
+      name="PictureReview"
+      component={PictureReviewScreen}
       options={{ headerShown: false }}
     />
   </MainStack.Navigator>

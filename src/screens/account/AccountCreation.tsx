@@ -1,13 +1,13 @@
 // TODO
 
-import { NavIcon, SubmitButton } from "@components";
+import { MainTextInput, NavIcon, SubmitButton } from "@components";
 import { MainLayout } from "@components/layouts";
 import { AuthContext } from "@config/AuthContext";
 import { colors } from "@constants";
 import { ScreenType } from "@types";
 import { createAccount } from "@util/api";
-import React, { FC, useContext, useState } from "react";
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import React, { useContext, useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
@@ -35,31 +35,9 @@ const styles = StyleSheet.create({
   },
 });
 
-type textInputType = {
-  isPassword?: boolean;
-  textContentType: "password" | "username" | "givenName" | "familyName";
-  defaultValue: string;
-  onChangeFunction: (text: string) => void;
-};
-const TextInputComponent: FC<textInputType> = ({
-  isPassword,
-  textContentType,
-  defaultValue,
-  onChangeFunction,
+const AccountCreationScreen: ScreenType<"AccountCreation"> = ({
+  navigation,
 }) => {
-  return (
-    <TextInput
-      editable
-      style={styles.textInput}
-      secureTextEntry={isPassword}
-      textContentType={textContentType}
-      onChangeText={onChangeFunction}
-      defaultValue={defaultValue}
-    />
-  );
-};
-
-const LoginScreen: ScreenType<"AccountCreation"> = ({ navigation }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
@@ -88,19 +66,20 @@ const LoginScreen: ScreenType<"AccountCreation"> = ({ navigation }) => {
       return;
     }
 
-    const successfulCreation = await createAccount(
+    const creationResult = await createAccount(
       username,
       password,
       firstName,
       lastName
     );
-    if (!successfulCreation) {
+    if (!creationResult) {
       setErrorMessage("Unknown Error. Please insert another quarter.");
       return;
     }
-    const successfulSignIn = auth.signIn("", "");
+    alert("Account created!");
+    const successfulSignIn = await auth.signIn(username, password);
     if (!successfulSignIn) {
-      setErrorMessage("Signing in failed :(.");
+      setErrorMessage("Account created, but sign-in failed :(.");
       return;
     }
     navigation.push("Home");
@@ -120,7 +99,7 @@ const LoginScreen: ScreenType<"AccountCreation"> = ({ navigation }) => {
         <Text>Create Account</Text>
         <View style={styles.line}>
           <Text>First Name:</Text>
-          <TextInputComponent
+          <MainTextInput
             textContentType="givenName"
             defaultValue={firstName}
             onChangeFunction={setFirstName}
@@ -128,7 +107,7 @@ const LoginScreen: ScreenType<"AccountCreation"> = ({ navigation }) => {
         </View>
         <View style={styles.line}>
           <Text>Last Name:</Text>
-          <TextInputComponent
+          <MainTextInput
             textContentType="familyName"
             defaultValue={lastName}
             onChangeFunction={setLastName}
@@ -136,7 +115,7 @@ const LoginScreen: ScreenType<"AccountCreation"> = ({ navigation }) => {
         </View>
         <View style={styles.line}>
           <Text>Username:</Text>
-          <TextInputComponent
+          <MainTextInput
             textContentType="username"
             defaultValue={username}
             onChangeFunction={setUsername}
@@ -151,7 +130,7 @@ const LoginScreen: ScreenType<"AccountCreation"> = ({ navigation }) => {
         )}
         <View style={styles.line}>
           <Text>Password:</Text>
-          <TextInputComponent
+          <MainTextInput
             isPassword
             textContentType="password"
             defaultValue={password}
@@ -167,7 +146,7 @@ const LoginScreen: ScreenType<"AccountCreation"> = ({ navigation }) => {
           </View>
         )}
         <SubmitButton title={"Create Account"} onPress={onSubmit} />
-        {errorMessage && (
+        {!!errorMessage && (
           <View style={styles.line}>
             <Text style={styles.errorText}>{errorMessage}</Text>
           </View>
@@ -177,4 +156,4 @@ const LoginScreen: ScreenType<"AccountCreation"> = ({ navigation }) => {
   );
 };
 
-export default LoginScreen;
+export default AccountCreationScreen;

@@ -1,8 +1,10 @@
-export { default as AccountCreationScreen } from "./AccountCreation";
+export { default as AccountCreationScreen } from "./account/AccountCreation";
+export { default as AccountModificationScreen } from "./account/AccountModification";
+export { default as LoginScreen } from "./account/Login";
 export { default as CameraScreen } from "./Camera";
 export { default as HomeScreen } from "./Home";
 export { default as LoadingScreen } from "./Loading";
 export { default as LogScreen } from "./Log";
-export { default as LoginScreen } from "./Login";
 export { default as MicrophoneScreen } from "./Microphone";
+export { default as PictureReviewScreen } from "./PictureReview";
 export { default as SettingsScreen } from "./Settings";

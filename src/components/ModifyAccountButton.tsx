@@ -20,14 +20,14 @@ const styles = StyleSheet.create({
   },
 });
 
-const CreateAccountButton: FC<props> = ({ onPress }) => {
+const ModifyAccountButton: FC<props> = ({ onPress }) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={onPress}>
-        <Text style={styles.text}>Create Account</Text>
+        <Text style={styles.text}>Modify Account</Text>
       </TouchableOpacity>
     </View>
   );
 };
 
-export default CreateAccountButton;
+export default ModifyAccountButton;

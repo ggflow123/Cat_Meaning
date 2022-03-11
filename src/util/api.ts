@@ -1,3 +1,26 @@
+// sleep function to simulate reaching a server, for testing purposes
+const sleep = (ms: number): Promise<void> => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};
+
+// takes in a Url and returns a File object that can be used in fetch requests
+const getDataUriFromUrl = (url: string): Promise<string> => {
+  return new Promise((resolve) => {
+    const request = new XMLHttpRequest();
+    request.open("GET", url, true);
+    request.responseType = "blob";
+    request.onload = function () {
+      var reader = new FileReader();
+      reader.readAsDataURL(request.response);
+      reader.onload = (e) => {
+        resolve(e.target?.result);
+      };
+    };
+    request.send();
+  });
+};
+
+// just a debugging thing
 export const sendDebug = async (): Promise<boolean> => {
   try {
     const response = await fetch(
@@ -11,12 +34,81 @@ export const sendDebug = async (): Promise<boolean> => {
   }
 };
 
+// TODO
+// on success, returns user data (uuid, username, etc.)
+// on failure, returns null
+export const doSignIn = async (
+  username: string,
+  password: string
+): Promise<{ uuid: string; username: string } | null> => {
+  try {
+    await sleep(500); // sleep to simulate reaching server
+    if (password === "bad") {
+      return null;
+    }
+    return { uuid: "1", username: username };
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+// returns user object on successful creation
+// returns null on unsuccessful creation
 export const createAccount = async (
   firstName: string,
   lastName: string,
   username: string,
   password: string
-): Promise<boolean> => {
+): Promise<{} | null> => {
+  try {
+    // return { uuid: "fake_uuid" };
+
+    const bodyData = JSON.stringify({
+      firstName: firstName,
+      lastName: lastName,
+      userProperty: {
+        name: username,
+        userType: "ADMIN",
+      },
+      userSecrete: {
+        password: password,
+      },
+      userSettingProperty: {},
+    });
+
+    const response = await fetch(
+      "https://caster-app-heroku.herokuapp.com/createUser",
+      {
+        method: "POST",
+        body: bodyData,
+      }
+    );
+
+    const content = await response.json();
+
+    if (content === null) {
+      return null;
+    }
+    const result = content.uuid;
+    if (result === null) {
+      const errorMessage = content?.mediaError?.mediaErrorMessage;
+      alert(errorMessage || "Error with account creation");
+      return null;
+    }
+    return { result: result };
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+export const modifyAccount = async (updatedUserData: {
+  firstName?: string;
+  lastName?: string;
+  username?: string;
+  password?: string;
+}): Promise<boolean> => {
   try {
     // to be implemented later
     return true;
@@ -116,3 +208,96 @@ export const createAccount = async (
 //     const
 //   }
 // }
+
+// const getFile = async (url: string) => {
+//   return "";
+// };
+
+// const getFile = async (url: string) => {
+//   const dataUri = await getDataUriFromUrl(url);
+//   return dataUri;
+// };
+
+const getFile = async (url: string) => {
+  const response = await fetch(url, { method: "GET" });
+  const data = await response.blob();
+  const metadata = {
+    type: "image/jpeg",
+  };
+  const file = new File([data], "cat.jpg", metadata);
+  return file;
+};
+
+// const getFile = async (url: string) => {
+//   const path = require("../assets/images/catpics/snowy.jpg");
+//   const response = await fetch(path);
+//   const blob = await response.blob();
+//   const file = new File([blob], "snowy.jpg", { type: "image/jpeg" });
+//   return file;
+// };
+
+// const getFile = async (url: string) => {
+//   const path = catpic;
+//   const response = await fetch(path);
+//   const blob = await response.blob();
+//   const file = new File([blob], "snowy.jpg", { type: "image/jpeg" });
+//   return file;
+// };
+
+// returns a string on success
+// returns null on failure
+// NOTE: The api requires (it seems) an input of type formData
+export const submitMedia = async (
+  uuid: string,
+  imageFile?: string
+): Promise<string | null> => {
+  try {
+    const bodyData = new FormData();
+    bodyData.append("userId", "1");
+    bodyData.append("logId", "1");
+    bodyData.append(
+      "file",
+      await getFile(
+        "https://upload.wikimedia.org/wikipedia/commons/a/a3/June_odd-eyed-cat.jpg"
+      )
+    );
+    const response = await fetch(
+      "https://caster-app-heroku.herokuapp.com/media/process",
+      {
+        method: "POST",
+        body: bodyData,
+      }
+    );
+
+    // const xhr = new XMLHttpRequest();
+    // const content = await new Promise((resolve, reject) => {
+    //   xhr.onreadystatechange = (e) => {
+    //     if (xhr.readyState !== 4) {
+    //       return;
+    //     }
+    //     resolve(xhr.responseText);
+    //   };
+    //   xhr.open("POST", "https://caster-app-heroku.herokuapp.com/media/process");
+    //   xhr.send(bodyData);
+    // });
+
+    const content = await response.json();
+    // console.log({ content });
+    return "successfully navigated fetch function";
+
+    if (content === null) {
+      alert("ERROR! Content of thingy was null");
+      return null;
+    }
+    const result = content.translationResult;
+    if (result === null) {
+      const errorMessage = content?.mediaError?.mediaErrorMessage;
+      alert(errorMessage || "Unkown error message");
+      return null;
+    }
+    return result.translationMessage;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};

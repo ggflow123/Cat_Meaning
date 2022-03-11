@@ -1,12 +1,12 @@
 // TODO
 
-import { NavIcon, SubmitButton } from "@components";
+import { MainTextInput, NavIcon, SubmitButton } from "@components";
 import { MainLayout } from "@components/layouts";
 import { AuthContext } from "@config/AuthContext";
 import { colors } from "@constants";
 import { ScreenType } from "@types";
 import React, { useContext, useState } from "react";
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
@@ -51,21 +51,16 @@ const LoginScreen: ScreenType<"Login"> = ({ navigation }) => {
       <View style={styles.container}>
         <Text>Login</Text>
         <Text>Enter your username:</Text>
-        <TextInput
-          editable
+        <MainTextInput
+          defaultValue={username}
+          onChangeFunction={setUsername}
           textContentType="username"
-          style={styles.textField}
-          onChangeText={(text) => setUsername(text)}
-          onSubmitEditing={signIn}
         />
         <Text>Enter your password:</Text>
-        <TextInput
-          secureTextEntry
-          editable
+        <MainTextInput
+          defaultValue={password}
+          onChangeFunction={setPassword}
           textContentType="password"
-          style={styles.textField}
-          onChangeText={(text) => setPassword(text)}
-          onSubmitEditing={signIn}
         />
         <SubmitButton title="submit" onPress={signIn} />
         <Text>{auth.loading ? "...loading..." : " "}</Text>
